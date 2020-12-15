@@ -1,2 +1,2 @@
 # Chelsea
- Project Manangement System
+ Project Management System
