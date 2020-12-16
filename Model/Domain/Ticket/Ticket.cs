@@ -120,12 +120,30 @@ namespace Chelsea.Model.Domain.Ticket
         }
 
         /// <summary>
+        /// Removes a member from the list of members that are responsible for this particular ticket.
+        /// </summary>
+        /// <param name="memberId">An integer number representing the Id of the member to be removed from the ticket.</param>
+        public void RemoveMember(int memberId)
+        {
+            _membersIds.Remove(memberId);
+        }
+
+        /// <summary>
         /// Adds a comment to the list of comments of this particular ticket.
         /// </summary>
         /// <param name="commentId">An integer number representing the Id of the comment to be added to the ticket.</param>
         public void AddComment(int commentId)
         {
             _commentsIds.Add(commentId);
+        }
+
+        /// <summary>
+        /// Removes a comment from the list of comments of this particular ticket.
+        /// </summary>
+        /// <param name="commentId">An integer number representing the Id of the comment to be removed from the ticket.</param>
+        public void RemoveComment(int commentId)
+        {
+            _commentsIds.Remove(commentId);
         }
     }
 }
