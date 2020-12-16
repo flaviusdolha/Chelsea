@@ -6,10 +6,10 @@ namespace Chelsea.Model.Domain.Ticket
     public class Ticket
     {
         /*
-         * ==========================================
-         * PROPERTIES
-         * ==========================================
-         */
+        * ==========================================
+        * PROPERTIES
+        * ==========================================
+        */
         
         private readonly int _id;
         public int Id
