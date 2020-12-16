@@ -2,12 +2,12 @@ namespace Chelsea.Model.Domain
 {
     public class Colour
     {
-        public const string Red = "F12D2D";
-        public const string Blue = "2D9BF1";
+        public const string RED = "F12D2D";
+        public const string BLUE = "2D9BF1";
 
         private static readonly string[] Colours = new[]
         {
-            Colour.Red, Colour.Blue
+            Colour.RED, Colour.BLUE
         };
 
         public static bool IsValidColor(string value)
