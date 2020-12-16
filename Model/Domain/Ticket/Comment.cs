@@ -4,6 +4,12 @@ namespace Chelsea.Model.Domain.Ticket
 {
     public class Comment
     {
+        /*
+        * ==========================================
+        * PROPERTIES
+        * ==========================================
+        */
+        
         private readonly int _id;
         public int Id
         {
@@ -27,6 +33,20 @@ namespace Chelsea.Model.Domain.Ticket
         {
             get => _content;
             set => _content = value;
+        }
+        
+        /*
+        * ==========================================
+        * CONSTRUCTORS
+        * ==========================================
+        */
+
+        public Comment(int authorId, string content)
+        {
+            _id = Utils.GetRandomInt();
+            _authorId = authorId;
+            _creationDate = DateTime.Now;
+            _content = content;
         }
     }
 }
