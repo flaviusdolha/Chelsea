@@ -54,6 +54,13 @@ namespace Chelsea.Model.Domain.Ticket
             set => _priority = value;
         }
 
+        private Status _status;
+        public Status Status
+        {
+            get => _status;
+            set => _status = value;
+        }
+
         private string _labelColor;
         public string LabelColor
         {
@@ -91,6 +98,7 @@ namespace Chelsea.Model.Domain.Ticket
             _description = "";
             _creationDate = DateTime.Now;
             _priority = Priority.None;
+            _status = Status.NotAssigned;
             _labelColor = Colour.NoColour;
             _membersIds = new List<int>();
             _commentsIds = new List<int>();
