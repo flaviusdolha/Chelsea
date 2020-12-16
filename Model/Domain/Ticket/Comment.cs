@@ -1,6 +1,6 @@
 using System;
 
-namespace Chelsea.Model.Domain
+namespace Chelsea.Model.Domain.Ticket
 {
     public class Comment
     {

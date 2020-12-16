@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chelsea.Model.Domain
+namespace Chelsea.Model.Domain.Ticket
 {
     public class Ticket
     {

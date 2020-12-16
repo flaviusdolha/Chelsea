@@ -1,4 +1,4 @@
-namespace Chelsea.Model.Domain
+namespace Chelsea.Model.Domain.Ticket
 {
     public enum Priority : ushort
     {
