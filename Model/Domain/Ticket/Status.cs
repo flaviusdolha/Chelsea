@@ -1,6 +1,6 @@
 namespace Chelsea.Model.Domain.Ticket
 {
-    public enum Status
+    public enum Status : short
     {
         NotAssigned = 0,
         InProgress = 1,
