@@ -61,13 +61,13 @@ namespace Chelsea.Model.Domain.Ticket
             set => _status = value;
         }
 
-        private string _labelColor;
-        public string LabelColor
+        private string _labelColour;
+        public string LabelColour
         {
-            get => _labelColor;
+            get => _labelColour;
             set
             {
-                if (Colour.IsValidColor(value)) _labelColor = value;
+                if (Colour.IsValidColour(value)) _labelColour = value;
                 else throw new ArgumentException("Specified label colour is not valid.");
             }
         }
@@ -90,16 +90,16 @@ namespace Chelsea.Model.Domain.Ticket
         * ==========================================
         */
         
-        public Ticket(int authorId, string title)
+        public Ticket(int id, int authorId, string title)
         {
-            _id = Utils.GetRandomInt();
+            _id = id;
             _authorId = authorId;
             _title = title;
             _description = "";
             _creationDate = DateTime.Now;
             _priority = Priority.None;
             _status = Status.NotAssigned;
-            _labelColor = Colour.NoColour;
+            _labelColour = Colour.NoColour;
             _membersIds = new List<int>();
             _commentsIds = new List<int>();
         }

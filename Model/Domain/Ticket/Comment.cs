@@ -41,9 +41,9 @@ namespace Chelsea.Model.Domain.Ticket
         * ==========================================
         */
 
-        public Comment(int authorId, string content)
+        public Comment(int id, int authorId, string content)
         {
-            _id = Utils.GetRandomInt();
+            _id = id;
             _authorId = authorId;
             _creationDate = DateTime.Now;
             _content = content;
