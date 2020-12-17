@@ -44,7 +44,7 @@ namespace Chelsea.Model.Domain.Ticket
         private readonly DateTime _creationDate;
         public DateTime CreationDate
         {
-            get => CreationDate;
+            get => _creationDate;
         }
 
         private Priority _priority;
