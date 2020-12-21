@@ -29,8 +29,8 @@ namespace Chelsea.Model.Domain.Ticket
             get => _title;
             set
             {
-                if (Title.Length <= 100) _title = value;
-                else throw new ArgumentOutOfRangeException("Ticket title must have maximum 100 characters.");
+                if (Title.Length <= 128) _title = value;
+                else throw new ArgumentOutOfRangeException("Ticket's title must have maximum 128 characters.");
             }
         }
 
@@ -38,7 +38,11 @@ namespace Chelsea.Model.Domain.Ticket
         public string Description
         {
             get => _description;
-            set => _description = value;
+            set
+            {
+                if (Description.Length <= 4000) _description = value;
+                else throw new ArgumentOutOfRangeException("Ticket's description must have maximum 4000 characters.");
+            }
         }
         
         private readonly DateTime _creationDate;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Chelsea.Model.Domain
@@ -20,6 +21,11 @@ namespace Chelsea.Model.Domain
         public string Name
         {
             get => _name;
+            set
+            {
+                if (Name.Length <= 128) _name = value;
+                else throw new ArgumentOutOfRangeException("Card's name must have maximum 128 characters.");
+            }
         }
 
         private List<int> _ticketsIds;

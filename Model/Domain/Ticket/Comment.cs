@@ -32,7 +32,11 @@ namespace Chelsea.Model.Domain.Ticket
         public string Content
         {
             get => _content;
-            set => _content = value;
+            set
+            {
+                if (Content.Length <= 128) _content = value;
+                else throw new ArgumentOutOfRangeException("Comment's content must have maximum 256 characters.");
+            }
         }
         
         /*

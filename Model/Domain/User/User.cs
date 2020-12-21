@@ -38,6 +38,13 @@ namespace Chelsea.Model.Domain.User
             get => _email;
         }
 
+        private string _password;
+
+        public string Password
+        {
+            get => _password;
+        }
+
         private string _profilePictureUrl;
         public string ProfilePictureUrl
         {
@@ -58,12 +65,13 @@ namespace Chelsea.Model.Domain.User
         * ==========================================
         */
         
-        public User(int id, string firstName, string lastName, string email)
+        public User(int id, string firstName, string lastName, string email, string password)
         {
             _id = id;
             _firstName = firstName;
             _lastName = lastName;
             _email = email;
+            _password = password;
             _profilePictureUrl = "";
             _role = Role.Viewer;
         }
