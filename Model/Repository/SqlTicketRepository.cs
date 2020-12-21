@@ -39,6 +39,7 @@ namespace Chelsea.Model.Repository
                             ticket.Priority = (Priority)sqlDataReader.GetByte(5);
                             ticket.Status = (Status)sqlDataReader.GetByte(6);
                             ticket.LabelColour = sqlDataReader.GetString(7);
+                            list.Add(ticket);
                         }
                     }
                 }
