@@ -11,11 +11,8 @@ namespace Chelsea.Model.Domain.User
         */
         
         private int _id;
-        public int Id
-        {
-            get => _id;
-        }
-        
+        public int Id => _id;
+
         private string _firstName;
         public string FirstName
         {
@@ -31,19 +28,13 @@ namespace Chelsea.Model.Domain.User
         }
 
         [DataType(DataType.EmailAddress)]
-        private string _email;
+        private readonly string _email;
         [DataType(DataType.EmailAddress)]
-        public string Email
-        {
-            get => _email;
-        }
+        public string Email => _email;
 
-        private string _password;
+        private readonly string _password;
 
-        public string Password
-        {
-            get => _password;
-        }
+        public string Password => _password;
 
         private string _profilePictureUrl;
         public string ProfilePictureUrl

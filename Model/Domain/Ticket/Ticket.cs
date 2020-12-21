@@ -12,17 +12,11 @@ namespace Chelsea.Model.Domain.Ticket
         */
         
         private readonly int _id;
-        public int Id
-        {
-            get => _id;
-        }
+        public int Id => _id;
 
         private readonly int _authorId;
-        public int AuthorId
-        {
-            get => _authorId;
-        }
-        
+        public int AuthorId => _authorId;
+
         private string _title;
         public string Title
         {
@@ -46,10 +40,7 @@ namespace Chelsea.Model.Domain.Ticket
         }
         
         private readonly DateTime _creationDate;
-        public DateTime CreationDate
-        {
-            get => _creationDate;
-        }
+        public DateTime CreationDate => _creationDate;
 
         private Priority _priority;
         public Priority Priority
@@ -103,7 +94,7 @@ namespace Chelsea.Model.Domain.Ticket
             _cardId = cardId;
         }
         
-        // Use this constructor to create objects that are retrieve from the Database.
+        // Use this constructor to create objects that are retrieved from the Database.
         public Ticket(int id, int authorId, string title, DateTime creationDate, int cardId)
         {
             _id = id;

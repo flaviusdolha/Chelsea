@@ -11,22 +11,13 @@ namespace Chelsea.Model.Domain.Ticket
         */
         
         private readonly int _id;
-        public int Id
-        {
-            get => _id;
-        }
-        
+        public int Id => _id;
+
         private readonly int _authorId;
-        public int AuthorId
-        {
-            get => _authorId;
-        }
+        public int AuthorId => _authorId;
 
         private readonly DateTime _creationDate;
-        public DateTime CreationDate
-        {
-            get => _creationDate;
-        }
+        public DateTime CreationDate => _creationDate;
 
         private string _content;
         public string Content
@@ -38,19 +29,34 @@ namespace Chelsea.Model.Domain.Ticket
                 else throw new ArgumentOutOfRangeException("Comment's content must have maximum 256 characters.");
             }
         }
-        
+
+        private readonly int _ticketId;
+
+        public int TicketId => _ticketId;
+
         /*
         * ==========================================
         * CONSTRUCTORS
         * ==========================================
         */
 
-        public Comment(int id, int authorId, string content)
+        public Comment(int id, int authorId, string content, int ticketId)
         {
             _id = id;
             _authorId = authorId;
             _creationDate = DateTime.Now;
             _content = content;
+            _ticketId = ticketId;
+        }
+        
+        // Use this constructor to create objects that are retrieved from the Database.
+        public Comment(int id, int authorId, DateTime creationDate, string content, int ticketId)
+        {
+            _id = id;
+            _authorId = authorId;
+            _creationDate = creationDate;
+            _content = content;
+            _ticketId = ticketId;
         }
     }
 }

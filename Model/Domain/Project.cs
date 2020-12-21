@@ -11,29 +11,14 @@ namespace Chelsea.Model.Domain
         */
         
         private readonly int _id;
-        public int Id
-        {
-            get => _id;
-        }
+        public int Id => _id;
 
         private readonly int _ownerId;
-        public int OwnerId
-        {
-            get => _ownerId;
-        }
+        public int OwnerId => _ownerId;
 
         private readonly string _name;
-        public string Name
-        {
-            get => _name;
-        }
+        public string Name => _name;
 
-        private List<int> _cardsIds;
-        public List<int> CardsIds
-        {
-            get => _cardsIds;
-        }
-        
         /*
         * ==========================================
         * CONSTRUCTORS
@@ -45,31 +30,6 @@ namespace Chelsea.Model.Domain
             _id = id;
             _ownerId = ownerId;
             _name = name;
-            _cardsIds = new List<int>();
-        }
-        
-        /*
-        * ==========================================
-        * METHODS
-        * ==========================================
-        */
-
-        /// <summary>
-        /// Adds a card to the list of cards for this project.
-        /// </summary>
-        /// <param name="cardId">An integer number representing the Id of the card to be added to the project.</param>
-        public void AddCard(int cardId)
-        {
-            _cardsIds.Add(cardId);
-        }
-
-        /// <summary>
-        /// Removes a card from the list of cards for this project.
-        /// </summary>
-        /// <param name="cardId">An integer number representing the Id of the card to be removed from the project.</param>
-        public void RemoveCard(int cardId)
-        {
-            _cardsIds.Remove(cardId);
         }
     }
 }
