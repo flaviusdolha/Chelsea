@@ -76,16 +76,12 @@ namespace Chelsea.Model.Domain.Ticket
             }
         }
 
-        private List<int> _membersIds;
-        public List<int> MembersIds
-        {
-            get => _membersIds;
-        }
+        private int _cardId;
 
-        private List<int> _commentsIds;
-        public List<int> CommentsIds
+        public int CardId
         {
-            get => _commentsIds;
+            get => _cardId;
+            set => _cardId = value;
         }
 
         /*
@@ -94,7 +90,7 @@ namespace Chelsea.Model.Domain.Ticket
         * ==========================================
         */
         
-        public Ticket(int id, int authorId, string title)
+        public Ticket(int id, int authorId, string title, int cardId)
         {
             _id = id;
             _authorId = authorId;
@@ -104,50 +100,21 @@ namespace Chelsea.Model.Domain.Ticket
             _priority = Priority.None;
             _status = Status.NotAssigned;
             _labelColour = Colour.NoColour;
-            _membersIds = new List<int>();
-            _commentsIds = new List<int>();
+            _cardId = cardId;
         }
         
-        /*
-        * ==========================================
-        * METHODS
-        * ==========================================
-        */
-        
-        /// <summary>
-        /// Adds a member to the list of members that are responsible for this particular ticket.
-        /// </summary>
-        /// <param name="memberId">An integer number representing the Id of the member to be added to the ticket.</param>
-        public void AddMember(int memberId)
+        // Use this constructor to create objects that are retrieve from the Database.
+        public Ticket(int id, int authorId, string title, DateTime creationDate, int cardId)
         {
-            _membersIds.Add(memberId);
-        }
-
-        /// <summary>
-        /// Removes a member from the list of members that are responsible for this particular ticket.
-        /// </summary>
-        /// <param name="memberId">An integer number representing the Id of the member to be removed from the ticket.</param>
-        public void RemoveMember(int memberId)
-        {
-            _membersIds.Remove(memberId);
-        }
-
-        /// <summary>
-        /// Adds a comment to the list of comments of this particular ticket.
-        /// </summary>
-        /// <param name="commentId">An integer number representing the Id of the comment to be added to the ticket.</param>
-        public void AddComment(int commentId)
-        {
-            _commentsIds.Add(commentId);
-        }
-
-        /// <summary>
-        /// Removes a comment from the list of comments of this particular ticket.
-        /// </summary>
-        /// <param name="commentId">An integer number representing the Id of the comment to be removed from the ticket.</param>
-        public void RemoveComment(int commentId)
-        {
-            _commentsIds.Remove(commentId);
+            _id = id;
+            _authorId = authorId;
+            _title = title;
+            _description = "";
+            _creationDate = creationDate;
+            _priority = Priority.None;
+            _status = Status.NotAssigned;
+            _labelColour = Colour.NoColour;
+            _cardId = cardId;
         }
     }
 }

@@ -25,10 +25,10 @@ namespace Chelsea.Model.Service
         /// </summary>
         /// <param name="authorId">An integer representing the Id of the author of the Ticket.</param>
         /// <param name="title">A string representing the title of the Ticket.</param>
-        public void AddTicket(int authorId, string title)
+        public void AddTicket(int authorId, string title, int cardId)
         {
             var id = _ticketRepository.GetNextId();
-            var ticket = new Ticket(id, authorId, title);
+            var ticket = new Ticket(id, authorId, title, cardId);
 
             _ticketRepository.Create(ticket);
         }
@@ -107,50 +107,14 @@ namespace Chelsea.Model.Service
         }
 
         /// <summary>
-        /// Adds a Member to the specified Ticket.
+        /// Moves a Ticket to another card.
         /// </summary>
-        /// <param name="ticketId">Id of Ticket to be modified.</param>
-        /// <param name="memberId">Id of member to be added to the Ticket</param>
-        public void AddMember(int ticketId, int memberId)
+        /// <param name="ticketId">Id of Ticket to be moved.</param>
+        /// <param name="cardId">Id of the card to be moved in.</param>
+        public void ModifyToAnotherCard(int ticketId, int cardId)
         {
             var ticket = _ticketRepository.FindById(ticketId);
-            ticket.AddMember(memberId);
-            _ticketRepository.Update(ticket);
-        }
-        
-        /// <summary>
-        /// Removes a Member from the specified Ticket.
-        /// </summary>
-        /// <param name="ticketId">Id of Ticket to be modified.</param>
-        /// <param name="memberId">Id of member to be removed from the Ticket</param>
-        public void RemoveMember(int ticketId, int memberId)
-        {
-            var ticket = _ticketRepository.FindById(ticketId);
-            ticket.RemoveMember(memberId);
-            _ticketRepository.Update(ticket);
-        }
-        
-        /// <summary>
-        /// Adds a Comment to the specified Ticket.
-        /// </summary>
-        /// <param name="ticketId">Id of Ticket to be modified.</param>
-        /// <param name="commentId">Id of comment to be added to the Ticket</param>
-        public void AddComment(int ticketId, int commentId)
-        {
-            var ticket = _ticketRepository.FindById(ticketId);
-            ticket.AddComment(commentId);
-            _ticketRepository.Update(ticket);
-        }
-        
-        /// <summary>
-        /// Removes a Comment from the specified Ticket.
-        /// </summary>
-        /// <param name="ticketId">Id of Ticket to be modified.</param>
-        /// <param name="commentId">Id of comment to be removed from the Ticket</param>
-        public void RemoveComment(int ticketId, int commentId)
-        {
-            var ticket = _ticketRepository.FindById(ticketId);
-            ticket.RemoveComment(commentId);
+            ticket.CardId = cardId;
             _ticketRepository.Update(ticket);
         }
 
