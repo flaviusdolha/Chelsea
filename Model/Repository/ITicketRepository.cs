@@ -7,6 +7,7 @@ namespace Chelsea.Model.Repository
     {
         public void Create(Ticket ticket);
         public List<Ticket> GetAll();
+        public List<Ticket> GetAllOnCard(int cardId);
         public Ticket FindById(int ticketId);
         public void Update(Ticket ticket);
         public void Delete(int ticketId);

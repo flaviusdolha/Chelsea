@@ -38,6 +38,13 @@ namespace Chelsea.Model.Service
         /// </summary>
         /// <returns>A list of Tickets.</returns>
         public List<Ticket> GetAllTickets() => _ticketRepository.GetAll();
+        
+        /// <summary>
+        /// Gets all Tickets from the Repository that are contained in a specified card.
+        /// </summary>
+        /// <param name="cardId">An integer representing the Id of the card to be retrieved from.</param>
+        /// <returns>A list of Tickets.</returns>
+        public List<Ticket> GetAllTickets(int cardId) => _ticketRepository.GetAllOnCard(cardId);
 
         /// <summary>
         /// Gets one Ticket with a specified Id.
