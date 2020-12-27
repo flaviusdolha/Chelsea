@@ -67,7 +67,15 @@ namespace Chelsea.Model.Repository
 
         public void Delete(int ticketId)
         {
-            throw new System.NotImplementedException();
+            var sql = $"DELETE [dbo].[Ticket] WHERE Id = {ticketId};";
+            _connection.Open();
+
+            using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            
+            _connection.Close();
         }
 
         public int GetNextId()
