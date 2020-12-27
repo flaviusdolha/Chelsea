@@ -67,7 +67,7 @@ namespace Chelsea.Model.Repository
 
         public void Delete(int ticketId)
         {
-            var sql = $"DELETE [dbo].[Ticket] WHERE Id = {ticketId};";
+            var sql = $"DELETE FROM [dbo].[Ticket] WHERE Id = {ticketId};";
             _connection.Open();
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
