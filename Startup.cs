@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using System.Text;
 using Chelsea.Model.Domain;
+using Chelsea.Model.Domain.Ticket;
 using Chelsea.Model.Repository;
 using Chelsea.Model.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,8 +32,8 @@ namespace Chelsea
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
 
-            services.AddScoped<ITicketRepository, SqlTicketRepository>();
-            services.AddScoped<SqlConnection>(provider => new SqlConnection(Utils.GetSqlConnectionString()));
+            services.AddScoped<IRepository<Ticket>, SqlTicketRepository>();
+            services.AddScoped(provider => new SqlConnection(Utils.GetSqlConnectionString()));
             services.AddScoped<TicketService>();
 
             services.AddAuthentication(options =>

@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using Chelsea.Model.Domain;
 using Chelsea.Model.Domain.Ticket;
 
 namespace Chelsea.Model.Repository
 {
-    public class SqlTicketRepository : ITicketRepository
+    public class SqlTicketRepository : IRepository<Ticket>
     {
         private readonly SqlConnection _connection;
 
@@ -37,9 +35,9 @@ namespace Chelsea.Model.Repository
             return _ReadWithSqlString(sql);
         }
 
-        public List<Ticket> GetAllOnCard(int cardId)
+        public List<Ticket> GetAllOnParent(int parentId)
         {
-            var sql = $"SELECT * FROM [dbo].[Ticket] WHERE CardId = {cardId};";
+            var sql = $"SELECT * FROM [dbo].[Ticket] WHERE CardId = {parentId};";
             return _ReadWithSqlString(sql);
         }
 

@@ -6,9 +6,9 @@ namespace Chelsea.Model.Service
 {
     public class TicketService
     {
-        private readonly ITicketRepository _ticketRepository;
+        private readonly IRepository<Ticket> _ticketRepository;
 
-        public TicketService(ITicketRepository ticketRepository)
+        public TicketService(IRepository<Ticket> ticketRepository)
         {
             _ticketRepository = ticketRepository;
         }
@@ -38,7 +38,7 @@ namespace Chelsea.Model.Service
         /// </summary>
         /// <param name="cardId">An integer representing the Id of the card to be retrieved from.</param>
         /// <returns>A list of Tickets.</returns>
-        public List<Ticket> GetAllTickets(int cardId) => _ticketRepository.GetAllOnCard(cardId);
+        public List<Ticket> GetAllTickets(int cardId) => _ticketRepository.GetAllOnParent(cardId);
 
         /// <summary>
         /// Gets one Ticket with a specified Id.
