@@ -18,7 +18,17 @@ namespace Chelsea.Model.Repository
         
         public void Create(Ticket ticket)
         {
-            throw new System.NotImplementedException();
+            var sql = $"INSERT INTO [dbo].[Ticket] VALUES ({ticket.AuthorId}," +
+                      $"{ticket.Title}, {ticket.Description}, {ticket.Priority}," +
+                      $"{ticket.Status}, {ticket.LabelColour}, {ticket.CardId})";
+            _connection.Open();
+
+            using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            
+            _connection.Close();
         }
 
         public List<Ticket> GetAll()
@@ -41,7 +51,18 @@ namespace Chelsea.Model.Repository
 
         public void Update(Ticket ticket)
         {
-            throw new System.NotImplementedException();
+            var sql = $"UPDATE [dbo].[Ticket]" +
+                      $"SET Title = {ticket.Title}, Description = {ticket.Description}," +
+                      $"Priority = {(int) ticket.Priority}, Status = {(int) ticket.Status}," +
+                      $"LabelColour = {ticket.LabelColour}, CardId = {ticket.CardId}";
+            _connection.Open();
+
+            using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            
+            _connection.Close();
         }
 
         public void Delete(int ticketId)
