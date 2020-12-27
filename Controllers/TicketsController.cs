@@ -12,11 +12,11 @@ namespace Chelsea.Controllers
     [ApiController]
     public class TicketsController : ControllerBase
     {
-        private readonly TicketService _service;
+        private readonly TicketService _ticketService;
         
-        public TicketsController(TicketService service)
+        public TicketsController(TicketService ticketService)
         {
-            _service = service;
+            _ticketService = ticketService;
         }
         
         [HttpGet]
@@ -24,8 +24,8 @@ namespace Chelsea.Controllers
         public ActionResult GetAllTickets(int cardId)
         {
             List<Ticket> list;
-            if (cardId != 0) list = _service.GetAllTickets(cardId); 
-            else list = _service.GetAllTickets();
+            if (cardId != 0) list = _ticketService.GetAllTickets(cardId); 
+            else list = _ticketService.GetAllTickets();
             if (list is null) return BadRequest();
             return Ok(list);
         }
@@ -34,7 +34,7 @@ namespace Chelsea.Controllers
         [Route("api/[controller]/{id}")]
         public ActionResult GetOneTicket(int id)
         {
-            var ticket = _service.GetTicketWithId(id);
+            var ticket = _ticketService.GetTicketWithId(id);
             if (ticket is null) return BadRequest();
             return Ok(ticket);
         }
@@ -49,7 +49,7 @@ namespace Chelsea.Controllers
                 var json = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(body);
                 try
                 {
-                    _service.AddTicket(json);
+                    _ticketService.AddTicket(json);
                     return Ok();
                 }
                 catch (Exception e)
@@ -69,7 +69,7 @@ namespace Chelsea.Controllers
                 var json = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(body);
                 if (json.ContainsKey("id"))
                 {
-                    _service.ModifyTicket(json);
+                    _ticketService.ModifyTicket(json);
                     return Ok();
                 }
                 return BadRequest();
@@ -80,9 +80,9 @@ namespace Chelsea.Controllers
         [Route("api/[controller]/{id}")]
         public ActionResult RemoveTicket(int id)
         {
-            var ticket = _service.GetTicketWithId(id);
+            var ticket = _ticketService.GetTicketWithId(id);
             if (ticket is null) return BadRequest();
-            _service.RemoveTicket(id);
+            _ticketService.RemoveTicket(id);
             return Ok();
         }
     }
