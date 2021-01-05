@@ -37,9 +37,9 @@ namespace Chelsea.Model.Repository
             return _ReadWithSqlString(sql);
         }
 
-        public List<Ticket> GetAllOnParent(int parentId)
+        public List<Ticket> GetAllOnParent(int cardId)
         {
-            var sql = $"SELECT * FROM [dbo].[Ticket] WHERE CardId = {parentId};";
+            var sql = $"SELECT * FROM [dbo].[Ticket] WHERE CardId = {cardId};";
             return _ReadWithSqlString(sql);
         }
 

@@ -48,7 +48,7 @@ namespace Chelsea.Model.Domain.Ticket
             _content = content;
             _ticketId = ticketId;
         }
-        
+
         // Use this constructor to create objects that are retrieved from the Database.
         public Comment(int id, int authorId, DateTime creationDate, string content, int ticketId)
         {
