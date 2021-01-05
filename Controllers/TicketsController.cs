@@ -26,7 +26,7 @@ namespace Chelsea.Controllers
             List<Ticket> list;
             if (cardId != 0) list = _ticketService.GetAllTickets(cardId); 
             else list = _ticketService.GetAllTickets();
-            if (list is null) return BadRequest();
+            if (list.Count == 0) return BadRequest();
             return Ok(list);
         }
         
@@ -60,19 +60,17 @@ namespace Chelsea.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]")]
-        public async Task<ActionResult> UpdateTicket()
+        [Route("api/[controller]/{id}")]
+        public async Task<ActionResult> UpdateTicket(int id)
         {
             using (var reader = new StreamReader(Request.Body))
             {
                 var body = await reader.ReadToEndAsync();
                 var json = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(body);
-                if (json.ContainsKey("id"))
-                {
-                    _ticketService.ModifyTicket(json);
-                    return Ok();
-                }
-                return BadRequest();
+                var ticket = _ticketService.GetTicketWithId(id);
+                if (ticket is null) return BadRequest();
+                _ticketService.ModifyTicket(json, ticket);
+                return Ok();
             }
         }
 

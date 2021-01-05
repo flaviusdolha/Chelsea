@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace Chelsea.Model.Repository
         
         public void Create(Ticket ticket)
         {
-            var sql = $"INSERT INTO [dbo].[Ticket] VALUES ({ticket.AuthorId}," +
-                      $"{ticket.Title}, {ticket.Description}, {ticket.Priority}," +
-                      $"{ticket.Status}, {ticket.LabelColour}, {ticket.CardId})";
+            var sql = $"INSERT INTO [dbo].[Ticket] VALUES ({ticket.AuthorId}, " +
+                      $"'{ticket.Title}', '{ticket.Description}', '{ticket.CreationDate}', " +
+                      $"{(int) ticket.Priority}, {(int) ticket.Status}, " +
+                      $"'{ticket.LabelColour}', {ticket.CardId});";
             _connection.Open();
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
@@ -49,10 +51,11 @@ namespace Chelsea.Model.Repository
 
         public void Update(Ticket ticket)
         {
-            var sql = $"UPDATE [dbo].[Ticket]" +
-                      $"SET Title = {ticket.Title}, Description = {ticket.Description}," +
-                      $"Priority = {(int) ticket.Priority}, Status = {(int) ticket.Status}," +
-                      $"LabelColour = {ticket.LabelColour}, CardId = {ticket.CardId}";
+            var sql = $"UPDATE [dbo].[Ticket] " +
+                      $"SET Title = '{ticket.Title}', Description = '{ticket.Description}', " +
+                      $"Priority = {(int) ticket.Priority}, Status = {(int) ticket.Status}, " +
+                      $"LabelColour = '{ticket.LabelColour}', CardId = {ticket.CardId} " +
+                      $"WHERE Id = {ticket.Id};";
             _connection.Open();
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
@@ -80,15 +83,21 @@ namespace Chelsea.Model.Repository
         {
             var sql = "SELECT IDENT_CURRENT('Ticket') AS TicketId;";
             _connection.Open();
+            var id = 0;
             
             using (SqlCommand sqlCommand = new SqlCommand(sql, _connection))
             {
                 using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                 {
-                    _connection.Close();
-                    return sqlDataReader.GetInt32(0) + 1;
+                    while (sqlDataReader.Read())
+                    {
+                        id = Decimal.ToInt32(sqlDataReader.GetDecimal(0) + 1);
+                    }
                 }
             }
+            
+            _connection.Close();
+            return id;
         }
 
         private List<Ticket> _ReadWithSqlString(string sql)

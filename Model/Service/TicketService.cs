@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Chelsea.Model.Domain.Ticket;
 using Chelsea.Model.Repository;
@@ -19,11 +20,12 @@ namespace Chelsea.Model.Service
         public void AddTicket(Dictionary<string, dynamic> options)
         {
             var id = _ticketRepository.GetNextId();
-            var ticket = new Ticket(id, options["authorId"], options["title"], options["cardId"]);
-            if (options.ContainsKey("description")) ticket.Description = options["description"];
-            if (options.ContainsKey("priority")) ticket.Priority = (Priority)options["priority"];
-            if (options.ContainsKey("status")) ticket.Status = (Status)options["status"];
-            if (options.ContainsKey("labelColour")) ticket.LabelColour = options["labelColour"];
+            if (id == 0) throw new Exception("Internal server error when trying to add a Ticket.");
+            var ticket = new Ticket(id, Int32.Parse(options["authorId"].ToString()), options["title"].ToString(), Int32.Parse(options["cardId"].ToString()));
+            if (options.ContainsKey("description")) ticket.Description = options["description"].ToString();
+            if (options.ContainsKey("priority")) ticket.Priority = (Priority) options["priority"].ToString();
+            if (options.ContainsKey("status")) ticket.Status = (Status) options["status"].ToString();
+            if (options.ContainsKey("labelColour")) ticket.LabelColour = options["labelColour"].ToString();
             _ticketRepository.Create(ticket);
         }
 
@@ -51,15 +53,14 @@ namespace Chelsea.Model.Service
         /// Modifies one Ticket with specified options.
         /// </summary>
         /// <param name="options">Options of the ticket to be modified.</param>
-        public void ModifyTicket(Dictionary<string, dynamic> options)
+        public void ModifyTicket(Dictionary<string, dynamic> options, Ticket ticket)
         {
-            Ticket ticket = GetTicketWithId(options["id"]);
-            if (options.ContainsKey("title")) ticket.Title = options["title"];
-            if (options.ContainsKey("description")) ticket.Description = options["description"];
-            if (options.ContainsKey("priority")) ticket.Priority = options["priority"];
-            if (options.ContainsKey("status")) ticket.Status = options["status"];
-            if (options.ContainsKey("labelColour")) ticket.LabelColour = options["labelColour"];
-            if (options.ContainsKey("cardId")) ticket.CardId = options["cardId"];
+            if (options.ContainsKey("title")) ticket.Title = options["title"].ToString();
+            if (options.ContainsKey("description")) ticket.Description = options["description"].ToString();
+            if (options.ContainsKey("priority")) ticket.Priority = (Priority) options["priority"].ToString();
+            if (options.ContainsKey("status")) ticket.Status = (Status) options["status"].ToString();
+            if (options.ContainsKey("labelColour")) ticket.LabelColour = options["labelColour"].ToString();
+            if (options.ContainsKey("cardId")) ticket.CardId = (int) options["cardId"].ToString();
             _ticketRepository.Update(ticket);
         }
 
