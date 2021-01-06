@@ -69,8 +69,15 @@ namespace Chelsea.Controllers
                 var json = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(body);
                 var ticket = _ticketService.GetTicketWithId(id);
                 if (ticket is null) return NotFound();
-                _ticketService.ModifyTicket(json, ticket);
-                return Ok();
+                try
+                {
+                    _ticketService.ModifyTicket(json, ticket);
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e);
+                }
             }
         }
 
