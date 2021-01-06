@@ -26,7 +26,7 @@ namespace Chelsea.Controllers
             List<Ticket> list;
             if (cardId != 0) list = _ticketService.GetAllTickets(cardId); 
             else list = _ticketService.GetAllTickets();
-            if (list.Count == 0) return BadRequest();
+            if (list.Count == 0) return NotFound();
             return Ok(list);
         }
         
@@ -35,7 +35,7 @@ namespace Chelsea.Controllers
         public ActionResult GetOneTicket(int id)
         {
             var ticket = _ticketService.GetTicketWithId(id);
-            if (ticket is null) return BadRequest();
+            if (ticket is null) return NotFound();
             return Ok(ticket);
         }
 
@@ -68,7 +68,7 @@ namespace Chelsea.Controllers
                 var body = await reader.ReadToEndAsync();
                 var json = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(body);
                 var ticket = _ticketService.GetTicketWithId(id);
-                if (ticket is null) return BadRequest();
+                if (ticket is null) return NotFound();
                 _ticketService.ModifyTicket(json, ticket);
                 return Ok();
             }
@@ -79,7 +79,7 @@ namespace Chelsea.Controllers
         public ActionResult RemoveTicket(int id)
         {
             var ticket = _ticketService.GetTicketWithId(id);
-            if (ticket is null) return BadRequest();
+            if (ticket is null) return NotFound();
             _ticketService.RemoveTicket(id);
             return Ok();
         }
