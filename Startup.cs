@@ -35,10 +35,12 @@ namespace Chelsea
             services.AddScoped<IRepository<Ticket>, SqlTicketRepository>();
             services.AddScoped<IRepository<Comment>, SqlCommentRepository>();
             services.AddScoped<IRepository<Card>, SqlCardRepository>();
+            services.AddScoped<IRepository<Project>, SqlProjectRepository>();
             services.AddScoped(provider => new SqlConnection(Utils.GetSqlConnectionString()));
             services.AddScoped<TicketService>();
             services.AddScoped<CommentService>();
             services.AddScoped<CardService>();
+            services.AddScoped<ProjectService>();
 
             services.AddAuthentication(options =>
                 {

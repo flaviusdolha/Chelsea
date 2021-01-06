@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Chelsea.Model.Domain
@@ -16,8 +17,17 @@ namespace Chelsea.Model.Domain
         private readonly int _ownerId;
         public int OwnerId => _ownerId;
 
-        private readonly string _name;
-        public string Name => _name;
+        private string _name;
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (Name.Length <= 128) _name = value;
+                else throw new ArgumentOutOfRangeException("Project's name must have maximum 128 characters.");
+            }
+        }
 
         /*
         * ==========================================
