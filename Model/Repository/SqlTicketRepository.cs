@@ -46,6 +46,7 @@ namespace Chelsea.Model.Repository
         public Ticket FindById(int ticketId)
         {
             var sql = $"SELECT TOP 1 * FROM [dbo].[Ticket] WHERE Id = {ticketId};";
+            if (_ReadWithSqlString(sql).Count == 0) return null;
             return _ReadWithSqlString(sql).First();
         }
 
