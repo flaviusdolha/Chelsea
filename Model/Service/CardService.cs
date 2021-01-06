@@ -20,7 +20,7 @@ namespace Chelsea.Model.Service
         public void AddCard(Dictionary<string, dynamic> options)
         {
             var id = _cardRepository.GetNextId();
-            if (id == 0) throw new Exception("Internal server error when trying to add a Comment.");
+            if (id == 0) throw new Exception("Internal server error when trying to add a Card.");
             var card = new Card(id, options["name"].ToString(), Int32.Parse(options["projectId"].ToString()));
             _cardRepository.Create(card);
         }
