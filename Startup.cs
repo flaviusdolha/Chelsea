@@ -33,8 +33,10 @@ namespace Chelsea
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
 
             services.AddScoped<IRepository<Ticket>, SqlTicketRepository>();
+            services.AddScoped<IRepository<Comment>, SqlCommentRepository>();
             services.AddScoped(provider => new SqlConnection(Utils.GetSqlConnectionString()));
             services.AddScoped<TicketService>();
+            services.AddScoped<CommentService>();
 
             services.AddAuthentication(options =>
                 {
