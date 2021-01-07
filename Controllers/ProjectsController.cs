@@ -13,10 +13,14 @@ namespace Chelsea.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly ProjectService _projectService;
+        private readonly CardService _cardService;
+        private readonly TicketService _ticketService;
         
-        public ProjectsController(ProjectService projectService)
+        public ProjectsController(ProjectService projectService, CardService cardService, TicketService ticketService)
         {
             _projectService = projectService;
+            _cardService = cardService;
+            _ticketService = ticketService;
         }
 
         [HttpGet]
@@ -32,11 +36,29 @@ namespace Chelsea.Controllers
 
         [HttpGet]
         [Route("api/[controller]/{id}")]
-        public ActionResult GetOneProjects(int id)
+        public ActionResult GetOneProject(int id)
         {
             var project = _projectService.GetProjectWithId(id);
             if (project is null) return NotFound();
             return Ok(project);
+        }
+
+        [HttpGet]
+        [Route("api/dashboard/project/{id}")]
+        public ActionResult GetOneProjectFull(int id)
+        {
+            var project = _projectService.GetProjectWithId(id);
+            if (project is null) return NotFound();
+            var cards = _cardService.GetAllCards(project.Id);
+            var cardsOnProject = new List<object>();
+            foreach (var card in cards)
+            {
+                var tickets = _ticketService.GetAllTickets(card.Id);
+                var obj = new { card, tickets };
+                cardsOnProject.Add(obj);
+            }
+
+            return Ok(cardsOnProject);
         }
 
         [HttpPost]
