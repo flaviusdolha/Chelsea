@@ -3,7 +3,9 @@ import Navbar from './Navbar';
 
 function Dashboard() {
     return (
-        <Navbar />
+        <div className="bg-gray-100 h-screen">
+            <Navbar /> 
+        </div>
     );
 }
 
