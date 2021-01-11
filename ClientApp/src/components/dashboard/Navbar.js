@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navbar() {
     return (
-        asd
+        <h1>asd</h1>
     );
 }
 
