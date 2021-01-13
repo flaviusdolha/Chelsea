@@ -17,7 +17,7 @@ function Home() {
                     </div>
                 </Link>
             </div>
-            <div className="mx-auto flex justify-around mb-12 mt-auto">
+            <div className="mx-auto flex justify-around mb-6 mt-auto">
                 <p className="text-xs text-white font-light pt-32 cursor-default">Version: Pre-Alpha v1.0</p>
             </div>
         </div>
