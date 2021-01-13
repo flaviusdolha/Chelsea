@@ -57,8 +57,8 @@ namespace Chelsea.Controllers
                 var obj = new { card, tickets };
                 cardsOnProject.Add(obj);
             }
-
-            return Ok(cardsOnProject);
+            var fullProject = new { project, cards = cardsOnProject };
+            return Ok(fullProject);
         }
 
         [HttpPost]
