@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'chelsea'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3d8fb6e097834ce8945257de93794fcd }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_dd9f484cc0624733be92c1e9b320f525 }}
         package: ${{env.DOTNET_ROOT}}/myapp 
