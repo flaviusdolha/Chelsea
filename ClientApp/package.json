@@ -6,6 +6,7 @@
     "@craco/craco": "^5.8.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9.8.6",
+    "axios": "^0.21.1",
     "jquery": "^3.5.1",
     "merge": "^1.2.1",
     "oidc-client": "^1.9.0",
